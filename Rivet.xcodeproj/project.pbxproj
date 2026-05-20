@@ -10,9 +10,22 @@
 		274F178B2FBCD0D2003A09E5 /* Rivet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rivet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		274F17A02FBDE80B003A09E5 /* Exceptions for "Rivet" folder in "Rivet" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 274F178A2FBCD0D2003A09E5 /* Rivet */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		274F178D2FBCD0D2003A09E5 /* Rivet */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				274F17A02FBDE80B003A09E5 /* Exceptions for "Rivet" folder in "Rivet" target */,
+			);
 			path = Rivet;
 			sourceTree = "<group>";
 		};
@@ -259,6 +272,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Rivet/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -291,6 +305,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Rivet/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
