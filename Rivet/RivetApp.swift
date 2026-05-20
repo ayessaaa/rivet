@@ -10,8 +10,12 @@ import SwiftUI
 @main
 struct RivetApp: App {
     var body: some Scene {
-        WindowGroup {
+        MenuBarExtra {
             ContentView()
+                
+        } label: {
+            Label("Rivet", systemImage: "pawprint.fill")
         }
+        .menuBarExtraStyle(.window)
     }
 }
