@@ -75,7 +75,7 @@ struct PetView: View {
                 
             }
             .padding(5)
-            .frame(height: 140)
+            .frame(height: 110)
         }
         
         

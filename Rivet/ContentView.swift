@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            HStack{
+            HStack (spacing: 5){
                 Text("Rivet")
                     .font( 
                         Font.custom(
@@ -33,6 +33,12 @@ struct ContentView: View {
                             .foregroundStyle(.orange)
                     }
                     .padding(.horizontal, 5)
+                }
+                
+                Button{
+                    
+                } label : {
+                    Image(systemName: "gearshape.fill")
                 }
                 
             }

@@ -10,6 +10,7 @@ import SwiftUI
 struct CircularProgressView: View {
     let progress: Double // 0.0 to 1.0
     let width: CGFloat
+    let color: Color
 
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct CircularProgressView: View {
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
                 .stroke(style: StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round))
-                .foregroundColor(.blue)
+                .foregroundColor(color)
                 .rotationEffect(Angle(degrees: 270.0)) // Start from top
                 .animation(.linear, value: progress) // Smooth transition
                 .frame(width: width)
@@ -33,5 +34,5 @@ struct CircularProgressView: View {
 
 
 #Preview {
-    CircularProgressView(progress: 0.4, width: 50)
+    CircularProgressView(progress: 0.4, width: 50, color: .blue)
 }
