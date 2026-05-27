@@ -25,7 +25,7 @@ struct CircularProgressView: View {
                 .stroke(style: StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round))
                 .foregroundColor(color)
                 .rotationEffect(Angle(degrees: 270.0)) // Start from top
-                .animation(.linear, value: progress) // Smooth transition
+                .animation(.linear(duration: 1.0), value: progress) // Smooth transition
                 .frame(width: width)
         }
         .padding(10)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PetView: View {
-    @State private var name: String = "scottie"
+    @AppStorage("name") private var name: String = "scottie"
     @State private var editingName: Bool = false
     var body: some View {
         GroupBox{
