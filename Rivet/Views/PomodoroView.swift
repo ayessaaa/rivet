@@ -30,7 +30,9 @@ struct PomodoroView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     @State private var timerStart = false
-    
+
+    @Binding var streakCount: Int
+
     var body: some View {
         GroupBox {
             VStack(alignment: .leading, spacing: 0) {
@@ -131,14 +133,13 @@ struct PomodoroView: View {
 
                 }
                 .padding(.top, 5)
-                
-                
-//                List{
-//                    ForEach(streaks) {streak in
-//                        Text(streak.date, style: .date)
-//                        Text(String(streak.pomodoroCount))
-//                    }
-//                }
+
+                //                List{
+                //                    ForEach(streaks) {streak in
+                //                        Text(streak.date, style: .date)
+                //                        Text(String(streak.pomodoroCount))
+                //                    }
+                //                }
             }
             .padding(5)
         }
@@ -157,6 +158,7 @@ struct PomodoroView: View {
                         pomodoroCount = 1
                     }
                     addPomodoroCount()
+                    countStreak()
                 } else {
                     timerType = 0
                 }
@@ -167,7 +169,8 @@ struct PomodoroView: View {
             timeRemaining = focusTimes[newValue]
         }
         .onAppear {
-//             resetStreaks() // Uncomment to clear all Streak records on appear
+            //             resetStreaks() // Uncomment to clear all Streak records on appear
+            countStreak()
             if timeRemaining <= 0 {
                 timeRemaining = focusTimes[timerType]
             }
@@ -179,16 +182,29 @@ struct PomodoroView: View {
     func addRecord() {
         let today = Calendar.current.startOfDay(for: Date())
 
-        let mostRecent = streaks
+        let mostRecent =
+            streaks
             .map { Calendar.current.startOfDay(for: $0.date) }
-            .max() ?? Calendar.current.date(byAdding: .day, value: -1, to: today)!
+            .max() ?? Calendar.current.date(
+                byAdding: .day,
+                value: -1,
+                to: today
+            )!
 
-        var cursor = Calendar.current.date(byAdding: .day, value: 1, to: mostRecent)!
+        var cursor = Calendar.current.date(
+            byAdding: .day,
+            value: 1,
+            to: mostRecent
+        )!
 
         while cursor <= today {
             let newRecord = Streak(date: cursor)
             modelContext.insert(newRecord)
-            cursor = Calendar.current.date(byAdding: .day, value: 1, to: cursor)!
+            cursor = Calendar.current.date(
+                byAdding: .day,
+                value: 1,
+                to: cursor
+            )!
         }
 
         do {
@@ -197,14 +213,14 @@ struct PomodoroView: View {
             print("Failed to save streaks: \(error)")
         }
     }
-    
-    func addPomodoroCount(){
-        if let streak = streaks.last{
+
+    func addPomodoroCount() {
+        if let streak = streaks.last {
             streak.pomodoroCount += 1
             try? modelContext.save()
         }
     }
-    
+
     func resetStreaks() {
         do {
             try modelContext.delete(model: Streak.self)
@@ -213,10 +229,24 @@ struct PomodoroView: View {
             print("Failed to reset data: \(error)")
         }
     }
+
+    func countStreak() {
+        streakCount = 0
+        for streak in streaks.reversed() {
+            print(streak.date)
+            print(streak.pomodoroCount)
+            if streak.pomodoroCount > 0 {
+
+                streakCount += 1
+            } else {
+                return
+            }
+        }
+
+    }
 }
 
 #Preview {
-    PomodoroView()
+    PomodoroView(streakCount: .constant(0))
         .padding()
 }
-

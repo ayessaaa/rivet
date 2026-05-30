@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @State var streakCount = 0
     var body: some View {
         VStack {
             HStack (spacing: 5){
@@ -26,7 +27,7 @@ struct ContentView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 10)
                             .foregroundStyle(.orange)
-                        Text("13d")
+                        Text("\(String(streakCount))d")
                             .font(
                                 Font.custom(
                                     "Jua-Regular",
@@ -47,7 +48,7 @@ struct ContentView: View {
             HStack{
                 
                 PetView()
-                PomodoroView()
+                PomodoroView( streakCount: $streakCount)
             }
         }
         .padding(10)
